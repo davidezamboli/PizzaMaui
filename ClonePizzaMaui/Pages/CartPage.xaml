@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ClonePizzaMaui.ViewModel"
+             xmlns:m="clr-namespace:ClonePizzaMaui.Model"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ClonePizzaMaui.Pages.CartPage"
+             Title="Cart"
+             x:DataType="vm:CartViewModel"
+             BackgroundColor="#CEEDAA">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Clear Cart"
+                     Command="{Binding ClearCartCommand}">
+           
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="*, Auto">
+        <ScrollView Grid.Row="0"
+                    Padding="10">
+            <CollectionView ItemsSource="{Binding Items}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout HorizontalOptions="Center"
+                                         VerticalOptions="FillAndExpand"
+                                         Spacing="15">
+                        <BoxView HeightRequest="200"
+                                 BackgroundColor="Transparent"/>
+                        <Label Text="No items in the cart"
+                               FontSize="25"
+                               TextColor="Gray"
+                               HorizontalTextAlignment="Center"/>
+                        <Button Text="Explore all pizzas"
+                                HorizontalOptions="Center"
+                                Background="DarkSeaGreen"
+                                CornerRadius="22"
+                                Padding="25, 10"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                Clicked="Button_Clicked"/>
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:Pizza">
+                        <Border StrokeShape="RoundRectangle 15"
+                                StrokeThickness="0"
+                                BackgroundColor="White"
+                                Padding="10">
+                            <!-- Update Later-->
+                            <!--<Grid ColumnDefinitions="Auto, *"
+                                  RowDefinitions="Auto, *"
+                                  RowSpacing="5"
+                                  ColumnSpacing="5">
+                                <Image Grid.Column="0"
+                                       Grid.Row="0"
+                                       Source="{Binding Image}"
+                                       WidthRequest="100"
+                                       HeightRequest="100"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
+                                <HorizontalStackLayout
+                                    Grid.Column="0"
+                                    Grid.Row="1"
+                                    Spacing="2">
+                                    <Border StrokeShape="RoundRectangle 5, 0, 5, 0"
+                                            StrokeThickness="0"
+                                            Background="Transparent"
+                                            HeightRequest="40">
+                                        <Grid ColumnDefinitions="*, 50, 25">
+                                            <ImageButton Grid.Column="0"
+                                                   Source="trash"
+                                                   HeightRequest="25"
+                                                   WidthRequest="25"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center">
+                                                <ImageButton.Behaviors>
+                                                    <toolkit:IconTintColorBehavior TintColor="red"/>
+                                                </ImageButton.Behaviors>
+                                                <ImageButton.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:CartViewModel}},
+                                                        Path=RemoveCartItemCommand}"
+                                                        CommandParameter="{Binding Name}"/>
+                                                </ImageButton.GestureRecognizers>
+                                            </ImageButton>
+                                            <Label Grid.Column="1" 
+                                                   Text="{Binding CartQuantity}"
+                                                   FontSize="20"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center"/>
+                                            <ImageButton Grid.Column="2"
+                                                   Source="increment"
+                                                   HeightRequest="25"
+                                                   WidthRequest="25"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center"
+                                                   Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:CartViewModel}},
+                                                   Path=IncrementItemFromCartCommand}"
+                                                   CommandParameter="{Binding .}">
+                                                <ImageButton.Behaviors>
+                                                    <toolkit:IconTintColorBehavior TintColor="SeaGreen"/>
+                                                </ImageButton.Behaviors>
+                                            </ImageButton>
+
+                                        </Grid>
+                                    </Border>
+                                </HorizontalStackLayout>
+                                
+                                <StackLayout Grid.Column="1"
+                                             Grid.Row="0"
+                                             Padding="10"
+                                             VerticalOptions="Center"
+                                             HorizontalOptions="Start"
+                                             Spacing="5">
+                                    <Label Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           FontSize="20"/>
+                                    <VerticalStackLayout>
+                                        <Label LineBreakMode="WordWrap"
+                                               MaxLines="3"
+                                               FontSize="16"
+                                               TextColor="Gray"
+                                               Text="{Binding Description}"/>
+                                        <Label LineBreakMode="HeadTruncation"
+                                               FontSize="16"
+                                               TextColor="Gray"
+                                               Text="{Binding Description}"/>
+                                    </VerticalStackLayout>
+                                </StackLayout>
+
+                                <Label Grid.Column="1"
+                                       Grid.Row="1"
+                                       Text="{Binding Price, StringFormat='${0:N2}'}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
+
+                            </Grid>-->
+                            
+                            <Grid ColumnDefinitions="25, Auto, 50, *, 80, 25">
+                                <Label Grid.Column="0"
+                                       Text="{Binding CartQuantity}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
+                                <Label Grid.Column="1"
+                                       Text="x"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
+                                <Image Grid.Column="2"
+                                       Source="{Binding Image}"
+                                       WidthRequest="25"
+                                       HeightRequest="25"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+                                <VerticalStackLayout Grid.Column="3"
+                                                     VerticalOptions="Center"
+                                                     HorizontalOptions="StartAndExpand"
+                                                     Spacing="2">
+                                    <Label Text="{Binding Name}"
+                                           FontSize="18"
+                                           FontAttributes="None"/>
+                                    <Label Text="{Binding Price, StringFormat='${0:N2}'}"
+                                           FontSize="14"/>
+                                </VerticalStackLayout>
+                                <Label Grid.Column="4"
+                                       Text="{Binding Amount, StringFormat='${0:N2}'}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"
+                                       FontSize="16"
+                                       FontAttributes="Bold"/>
+                                <Image Grid.Column="5"
+                                       Source="trash"
+                                       HeightRequest="25"
+                                       WidthRequest="25"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="End">
+                                    <Image.Behaviors>
+                                        <toolkit:IconTintColorBehavior TintColor="red"/>
+                                    </Image.Behaviors>
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:CartViewModel}},
+                                            Path=RemoveCartItemCommand}"
+                                            CommandParameter="{Binding Name}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                            
+                            <!-- GoToDetailsPage -->
+                            <!--<Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:CartViewModel}},
+                                    Path=GoToDetailsPageCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>-->
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    
+        <Border Grid.Row="1" 
+                StrokeShape="RoundRectangle 40"
+                BackgroundColor="DarkSeaGreen"
+                StrokeThickness="0"
+                VerticalOptions="End"
+                Margin="5"
+                Padding="10">
+            <Grid ColumnDefinitions="*, *">
+                <Label Grid.Column="0"
+                       Padding="18, 0"
+                       VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Total: &#10;"
+                                  TextColor="White"
+                                  FontSize="18"/>
+                            <Span Text="{Binding TotalAmount, StringFormat='${0:N2}'}"
+                                  TextColor="White"
+                                  FontAttributes="Bold"
+                                  FontSize="20"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <!-- Placing Button -->
+                <Border Grid.Column="1"
+                        StrokeShape="RoundRectangle 25"
+                        StrokeThickness="0"
+                        BackgroundColor="SeaGreen"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Padding="25, 10">
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 Spacing="15">
+                        <Grid ColumnDefinitions="Auto, Auto, Auto"
+                              ColumnSpacing="8">
+                            <!-- Activity Indicator -->
+                            <ActivityIndicator Grid.Column="0" 
+                                               IsRunning="{Binding IsPlacingOrder}"
+                                               IsVisible="{Binding IsPlacingOrder}"
+                                               Color="White"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"
+                                               WidthRequest="30"
+                                               HeightRequest="30"/>
+
+                            <Label Grid.Column="1"
+                                   Text="Place order"
+                                   TextColor="White"
+                                   FontSize="16"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Setter Property="IsVisible"
+                                                Value="True"/>
+                                        <Style.Triggers>
+                                            <DataTrigger TargetType="Label"
+                                                         Binding="{Binding IsPlacingOrder}"
+                                                         Value="True">
+                                                <Setter Property="Text" 
+                                                        Value="{Binding IsPlacingOrder, StringFormat='Placing'}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+
+                            <Image Grid.Column="2"
+                                   Source="hand_deliver"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   WidthRequest="30"
+                                   HeightRequest="30"/>
+                        </Grid>
+                    </StackLayout>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PlaceOrderCommand}"/>
+                    </Border.GestureRecognizers>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+    
+</ContentPage>

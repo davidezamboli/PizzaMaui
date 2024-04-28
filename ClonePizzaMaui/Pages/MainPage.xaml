@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ClonePizzaMaui.Pages.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="DarkSeaGreen">
+
+
+    <Grid RowDefinitions="Auto, *, Auto"
+          Padding="15, 25"
+          RowSpacing="50">
+
+        <Grid Grid.Row="0"
+              RowDefinitions="*, Auto, Auto">
+            <Image Source="pizza_logo"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   Rotation="-100"/>
+            <Label Grid.Row="1"
+                   Text="Goodfellas"
+                   TextColor="White"
+                   FontSize="50"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+            <Label Grid.Row="2"
+                   Text="PIZZA STOP"
+                   TextColor="White"
+                   FontSize="16"
+                   HorizontalTextAlignment="Center"
+                   TextDecorations="Underline"/>
+        </Grid> 
+        
+        <!--<Border Grid.Row="1"
+                StrokeShape="RoundRectangle 20"
+                StrokeThickness="0"
+                HorizontalOptions="Center"
+                BackgroundColor="WhiteSmoke"
+                Opacity="0.8"
+                Padding="15"
+                VerticalOptions="Start">
+            
+            <Grid ColumnDefinitions="*, 150"
+                  RowDefinitions="*, Auto"
+                  RowSpacing="15">
+                <VerticalStackLayout Grid.Row="0"
+                         Grid.Column="0"
+                         Spacing="10">
+                    <Label Text="No Question"
+                           TextColor="Salmon"
+                           FontSize="25"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"/>
+                    <Label FontSize="18">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="“ I like going this " />
+                                <Span Text="way"
+                                      FontAttributes="Bold"
+                                      TextColor="Salmon"/>
+                                <Span Text=". &#10;It’s better than waiting in line ”"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+                <Button Grid.Row="1"
+                        Grid.Column="0" 
+                        Text=" Get it now"
+                        BackgroundColor="LightSalmon"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="22"
+                        HorizontalOptions="Center"
+                        Padding="50, 0"/>
+                <Image Grid.Column="1"
+                       Grid.RowSpan="2"
+                       Source="pizzeria_ita.png"
+                       HeightRequest="150"
+                       WidthRequest="150"/>
+            </Grid>
+        </Border>-->
+
+        <Image Grid.Row="1"
+               Source="pizza_sharing.png" 
+               HeightRequest="350"
+               WidthRequest="350"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"/>
+
+        <VerticalStackLayout Grid.Row="2"
+                             Spacing="15">
+            <Label Text="Check the Taste of Italian Pizza"
+                   TextColor="White"
+                   FontSize="40"
+                   FontAttributes="Bold"/>
+            <Label Text="Feel the taste of mouth watering pizza from its original country" 
+                   TextColor="White"
+                   FontSize="18"
+                   LineHeight="1.2"/>
+            <BoxView 
+                BackgroundColor="Transparent" 
+                HeightRequest="10" />
+            <Border StrokeShape="RoundRectangle 25"
+                    StrokeThickness="0"
+                    BackgroundColor="SeaGreen"
+                    HeightRequest="50">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Spacing="30"
+                                       Padding="0, 5">
+                    <Label Text="Get Started"
+                           TextColor="White"
+                           FontSize="18"
+                           FontAttributes="Bold"/>
+                    <Image Source="right_arrow"
+                           VerticalOptions="Center"
+                           HeightRequest="20"
+                           WidthRequest="20">
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="White"/>
+                        </Image.Behaviors>
+                    </Image>
+                </HorizontalStackLayout>
+            </Border>
+            
+        </VerticalStackLayout>
+            
+    </Grid>
+</ContentPage>
